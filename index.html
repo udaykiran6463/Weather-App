@@ -3,87 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Figtree:wght@300&family=League+Spartan&family=Nunito&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style1.css">
     <title>Document</title>
 </head>
 <body>
     <div class="wrapper">
-        <h1>WeatherVue</h1>
+        <h1>Weather Vue</h1>
         <div class="tab-container">
             <p class="tab" data-userweather>Your Weather</p>
             <p class="tab" data-searchweather>Search Weather</p>
+        </div>
+        <div class="weather-container">
+            <!-- grant location container-->
 
-            <div class="weather-container">
-                <!-- grant location container-->
+            <div class="grant-location-container sub-container">
+                <img src="./assets/location.png" alt="location" class="" width="80" height="80" loading="lazy">
+                <p>Grant Location Access</p>
+                <p>Allow access to get weather information</p>
+                <button class="btn1" data-grantAccess>Grant Access</button>
+            </div>
 
-                <div class="grant-location-container">
-                    <img src="./assets/location.png" alt="location" class="" width="80" height="80" loading="lazy">
-                    <p>Grant Location Access</p>
-                    <p>Allow access to get weather information</p>
-                    <button class="btn" data-grantAccess>Grant Access</button>
+
+            <!-- Search weather container -->
+            <form class="form-container sub-form-container" data-searchForm>
+                <input type="text" placeholder="Search for city..." data-searchInput>
+                <button class="btn"type="submit" ><img src="./assets/search.png" alt="" width="20" height="20" loading="lazy"></button>
+            </form>
+
+            <!-- loading Screen container -->
+
+            <div class=" sub-container loading-container">
+                <img src="./assets/loading.gif" alt="" width="150" height="150" ldImg>
+                <p>Loading</p>
+            </div>
+
+
+            <!-- Your weather container -->
+            <div class="user-info-container user-sub-container">
+
+                <div class="left-side">
+                    <!-- weather icon -->
+                    <img data-weatherIcon class="weatherIcon">
                 </div>
 
-
-                <!-- Search weather container -->
-                <form class="form-container" data-searchForm>
-                    <input type="text" placeholder="Search for city..." data-searchInput>
-                    <button class="btn" ><img src="./assets/search.png" alt="" width="20" height="20" loading="lazy"></button>
-                </form>
-
-                <!-- loading Screen container -->
-
-                <div class="loading-container">
-                    <img src="./assets/loading.gif" alt="" width="150" height="150">
-                    <p>Loading</p>
-                </div>
-
-
-                <!-- Your weather container -->
-                <div class="user-info-container">
-
+                <div class="right-side">
+                    <!-- temp -->
+                    <p data-temp class="temp"></p>
+                    <!-- weather desc -->
+                    <p data-weatherDesc id="desc"></p>
                     <!-- city name and flag -->
                     <div class="name">
                         <p data-cityName></p>
-                        <img src="" alt="" data-countryIcon>
+                        <img src="" alt="flag" data-countryIcon>
                     </div>
-                    <!-- weather desc -->
-                    <p data-weatherDesc></p>
 
-                    <!-- weather icon -->
-                    <img data-weatherIcon>
-
-                    <!-- temp -->
-                    <p data-temp></p>
-
-                    <!-- 3 cards -->
-
-                    <div class="parameter-container">
+                    <div class="two-cards">
                         <!-- card-1 -->
                         <div class="parameter">
-                            <img src="./assets/wind.png" alt="">
-                            <p>WindSpeed</p>
-                            <p data-windSpeed></p>
+                            <img src="./assets/whiteWind.png" alt="" width="90px">
+                            <div class="iconData">
+                                <p data-windSpeed></p>
+                                <p>WindSpeed</p>
+                            </div>
                         </div>
                         
                         <!-- card-2 -->
                         <div class="parameter">
-                            <img src="./assets/humidity.png" alt="">
-                            <p>Humidity</p>
-                            <p data-humidity></p>
+                            <img src="./assets/blueHumidity.png" alt="" width="90px">
+                            <div class="iconData">
+                                <p data-humidity></p>
+                                <p>Humidity</p>
+                            </div>
                         </div>
-                        
+                    </div>
+                    <div class="third-card">
                         <!-- card-3 -->
                         <div class="parameter">
-                            <img src="./assets/cloud.png" alt="">
-                            <p>Clouds</p>
-                            <p data-cloud></p>
+                            <img src="./assets/Bluecloudwbg.png" alt="" width="90px">
+                            <div class="iconData">
+                                <p data-cloud></p>
+                                <p>Clouds</p>
+                            </div>
                         </div>
-
                     </div>
 
+
                 </div>
-
-
             </div>
         </div>
     </div>

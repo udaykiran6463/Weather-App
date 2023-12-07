@@ -9,13 +9,17 @@ const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 
 
+
+
 // initially varables needed
 let currentTab = userTab;
 const API_KEY1 = "iqkuxyxma64t08oaw7e8he4pcdvspoii3k0455dl";
 const API_KEY = "59747ae19fb2aac71be533d29864a60e";
 
 currentTab.classList.add("current-tab");
-// one task is still pending
+
+
+getFromSessionStorage();
 
 function switchTab(clickedTab){
     if(clickedTab != currentTab){
@@ -52,22 +56,23 @@ searchTab.addEventListener("click",()=>{
 function getFromSessionStorage(){
     // chekc if corodintes are present in the session storage
     const localCoordinates = sessionStorage.getItem("user-coordinates");
+    // console.log(localCoordinates);
     if(!localCoordinates){
         // if no local coordinates
         grantAccessContainer?.classList?.add("active");
     }
     else{
-        const coordinates = json.parse(localCoordinates);
+        const coordinates = JSON.parse(localCoordinates);
         fetchUserWeatherInfo(coordinates);
     }
 }
 
 async function fetchUserWeatherInfo(coordinates){
-    console.log(coordinates);
+    // console.log(coordinates);
     const lati = coordinates.lat;
     const long = coordinates.lon;
-    console.log(long)
-    console.log(lati)
+    // console.log(long)
+    // console.log(lati)
 
     // make grant container invisible 
     grantAccessContainer.classList.remove("active");
@@ -82,8 +87,8 @@ async function fetchUserWeatherInfo(coordinates){
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data,coordinates)
-        console.log(data);
 
+        // console.log(data);
     }
     catch(err){
         // pending
@@ -96,7 +101,7 @@ async function fetchUserWeatherInfo(coordinates){
 
 
 async function setIcon(coordinates){
-    console.log(coordinates);
+    // console.log(coordinates);
     const lati = coordinates.lat;
     const long = coordinates.lon;
     const response1 = await fetch(`https://www.meteosource.com/api/v1/free/point?lon=${long}&lat=${lati}&sections=all&timezone=UTC&language=en&units=metric&key=${API_KEY1}`);
@@ -107,15 +112,36 @@ async function setIcon(coordinates){
 
 
 
-async function setTemp(coordinates){
-    console.log(coordinates);
+// async function setTemp(coordinates){
+//     // console.log(coordinates);
+//     const lati = coordinates.lat;
+//     const long = coordinates.lon;
+//     const response1 = await fetch(`https://www.meteosource.com/api/v1/free/point?lon=${long}&lat=${lati}&sections=all&timezone=UTC&language=en&units=metric&key=${API_KEY1}`);
+//     const data = await response1.json();
+//     const temp = document.querySelector("[data-temp]")
+//     // temp.innerText = data.current.temperature;
+//     temp = Math.round(data.current.temperature) + 5;
+//     console.log(temp);
+//     temptext = "${temp} + °C";
+//     temp.innerText = temptext;
+// }
+async function setTemp(coordinates) {
     const lati = coordinates.lat;
     const long = coordinates.lon;
-    const response1 = await fetch(`https://www.meteosource.com/api/v1/free/point?lon=${long}&lat=${lati}&sections=all&timezone=UTC&language=en&units=metric&key=${API_KEY1}`);
-    const data = await response1.json();
-    const temp = document.querySelector("[data-temp]")
-    temp.innerText = data.current.temperature;
+    
+    const response = await fetch(`https://www.meteosource.com/api/v1/free/point?lon=${long}&lat=${lati}&sections=all&timezone=UTC&language=en&units=metric&key=${API_KEY1}`);
+    
+    const data = await response.json();
+    
+    const tempValue = Math.round(data.current.temperature) + 3; // Calculate temperature
+    
+    const tempText = `${tempValue} °C`; // Prepare temperature text
+    
+    const tempElement = document.querySelector("[data-temp]"); // Get DOM element where temperature will be displayed
+    
+    tempElement.innerText = tempText; // Set temperature text in the DOM
 }
+
 
 
 function renderWeatherInfo(weatherInfo,coordinates){
@@ -147,13 +173,26 @@ function renderWeatherInfo(weatherInfo,coordinates){
     setTemp(coordinates);
 
     // --set windspeed
-    windSpeed.innerText = weatherInfo?.list[0]?.wind?.speed;
+    windSpeed.innerText = `${weatherInfo?.list[1]?.wind?.speed}Km/h`;
 
     // -- set humidity
-    humidity.innerText = weatherInfo.list[1].main?.humidity;
+    humidity.innerText = `${weatherInfo.list[1].main?.humidity}%`;
 
     // --set cloudyness
-    cloudyness.innerText = weatherInfo?.list[0]?.clouds?.all;
+    cloudyness.innerText = `${weatherInfo?.list[1]?.clouds?.all}%`;
+
+    let clouds = weatherInfo?.list[0]?.clouds?.all;
+    console.log(clouds); // Check the value to see if it's getting properly assigned
+    if (clouds !== undefined && clouds > 60) {
+        setBackgroundDark();
+    }
+    else{
+        setBackgroundLight();
+    }
+    const userInfoContainer = document.querySelector(".user-info-container");
+    userInfoContainer.style.marginTop = "3rem";
+    
+    
 }
 
 function renderWeatherInfoSearch(weatherInfo,coordinates){
@@ -185,13 +224,27 @@ function renderWeatherInfoSearch(weatherInfo,coordinates){
     setTemp(coordinates);
 
     // --set windspeed
-    windSpeed.innerText = weatherInfo?.wind?.speed;
+    windSpeed.innerText = `${weatherInfo?.wind?.speed}Km/h`;
 
     // -- set humidity
-    humidity.innerText = weatherInfo?.main?.humidity;
+    humidity.innerText = `${weatherInfo?.main?.humidity}%`;
 
     // --set cloudyness
-    cloudyness.innerText = weatherInfo?.clouds?.all;
+    cloudyness.innerText = `${weatherInfo?.clouds?.all}%`;
+
+    let clouds = weatherInfo?.clouds?.all;
+    if(weatherInfo?.clouds?.all > 60){
+        setBackgroundDark();
+    }
+    else{
+        setBackgroundLight();
+    }
+
+    const weatherContainer = document.querySelector(".weather-container");
+    weatherContainer.style.margin = "2rem auto";
+
+    const userInfoContainer = document.querySelector(".user-info-container");
+    userInfoContainer.style.marginTop = "0rem";
 }
 
 
@@ -227,7 +280,7 @@ const searchInput = document.querySelector("[data-searchInput]");
 searchForm.addEventListener("submit",(e)=>{
     e.preventDefault();
     let cityName = searchInput.value; // Use 'value' to get the input value
-    console.log("cityName: ", cityName);
+    // console.log("cityName: ", cityName);
     if (cityName === "") {
         return;
     } 
@@ -246,15 +299,37 @@ async function fetchSearchWeatherInfo(city){
         const data = await response.json();
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
-        console.log(data);
+        // console.log(data);
 
         let cords = {"lat":data?.coord?.lat,"lon":data?.coord?.lon};
-        console.log(data.coord.lat);
-        console.log(data.coord.lon);
-        console.log("cords: ",cords);
+        // console.log(data.coord.lat);
+        // console.log(data.coord.lon);
+        // console.log("cords: ",cords);
         renderWeatherInfoSearch(data,cords);
     }
     catch(err){
         console.log(err);
     }
 }
+
+
+// setting background color
+function setBackgroundDark() {
+    const wrpr = document.querySelector(".wrapper");
+    wrpr.style.backgroundColor = " #000000";
+    wrpr.style.backgroundImage = "linear-gradient(315deg, #000000 0%, #414141 74%)";
+    const loadImg = document.querySelector("[ldImg]");
+    loadImg.style.filter = "hue-rotate(45deg) saturate(200%)";
+}
+
+// setting background color
+function setBackgroundLight() {
+    const wrpr = document.querySelector(".wrapper");
+    wrpr.style.backgroundColor = "#7a7adb";
+    wrpr.style.backgroundImage = "linear-gradient(160deg, #112d4e 0%, #3f72af 100%)";
+    const loadImg = document.querySelector("[ldImg]");
+    loadImg.style.filter = "invert(0%)"; // inverting the image completely
+    
+}
+
+

@@ -1,10 +1,371 @@
-.tab.current-tab{
-    background-color: rgb(219, 226, 239,0.5);
-    border-radius: 4px;
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200&family=Merriweather+Sans&family=Slabo+27px&display=swap');
+*,*::after,*::before{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Merriweather Sans', sans-serif;
 }
+:root{
+    --colorDark1:#112D4E;
+    --colorDark2:#3F72AF;
+    --colorLight1:#DBE2EF;
+    --colorLight2:#F9F7F7;
+}
+
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+    color: var(--colorLight2);
+    background-color: #7a7adb;
+    background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);
+}
+
+h1{
+    text-align: center;
+    /* text-transform: uppercase; */
+    padding-top: 20px;
+}
+
+.tab-container{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 650px;
+    margin:0 auto;
+    margin-top: 3rem;
+}
+
+.tab{
+    cursor: pointer;
+    font-size: 0.875rem;
+    letter-spacing: 1.75px;
+    padding: 6px 9px;
+}
+
+.weather-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    margin-block:3rem;
+}
+
+.btn1{
+    all: unset;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--colorDark2);
+    cursor: pointer;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+}
+
+
+.sub-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container img{
+    margin-bottom: 2rem;
+}
+
+.sub-container p:first-of-type{
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.sub-container > p:nth-of-type(2) {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.75px;
+}
+
+
+
+
+
+
+.grant-location-container{
+    display: none;
+}
+
+.tab.current-tab{
+    background-color: rgba(0, 0, 0, 0.324);
+    border-radius: 4px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+
+.loading-container{
+    display: none;
+}
+
+.loading-container.active{
+    display: flex;
+}
+
+.loading-container{
+    text-transform: uppercase;
+
+}
+
 
 .form-container.active{
     scale:1;
     opacity: 1;
     display: flex;
+}
+.grant-location-container.active{
+    display: flex; 
+}
+
+/* sytling the user information container */
+
+.user-sub-container{
+    /* border: 2px solid red; */
+    display: flex;
+    /* justify-content: space-between; */
+    max-width: 650px;
+    width: 90%;
+}
+
+.user-info-container{
+    display: none;
+}
+.user-info-container.active{
+    display: flex;
+
+}
+
+.left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid black; */
+}
+.weatherIcon{
+    width: 12rem;
+    align-self: start;
+    margin-top: 1rem;
+}
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto;
+}
+
+.name p:first-of-type{
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    gap:0 1rem;
+}
+
+.name img{
+    width: 30px;
+    height: 30px;
+}
+
+.two-cards, third-card{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin:1rem;
+}
+
+
+
+.parameter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parameter img{
+    width: 85px;
+    margin-right: 0.5rem;
+}
+
+.iconData{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconData p:first-of-type{
+    font-size: 2rem;
+}
+
+.iconData p:last-of-type{
+    font-size: 1.25rem;
+    font-weight: 500;
+    /* letter-spacing: 1.25px; */
+}
+
+.temp{
+    font-size: 7rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#desc{
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+.sub-form-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 650px;
+    margin: 0 auto;
+    gap: 0 1rem;
+    margin-bottom:2rem;
+}
+
+.form-container{
+    display: none;
+}
+
+.form-container.active{
+    display: flex;
+}
+
+
+.form-container input{
+    all: unset;
+    width:calc(100% - 40px);
+    height: 40px;
+    padding: 0 20px;
+    background-color: rgba(219,226,239,0.5);
+    border-radius: 10px;
+}
+
+.form-container input::placeholder{
+    color: var(--colorDark1);
+}
+
+.form-container input:focus{
+    outline: 3px solid var(--colorDark2);
+}
+
+.form-container button{
+    all: unset;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--colorDark2);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+/* Your existing CSS */
+
+/* Media query for screens smaller than 768px (typical mobile devices) */
+@media (max-width: 767px) {
+    .wrapper {
+        padding: 20px; /* Adding padding for smaller screens */
+    }
+
+    .tab-container {
+        flex-direction: row; /* Stack tabs vertically for smaller screens */
+        align-items: center; /* Center align tabs */
+        margin-top: 2rem; /* Adjust margin for better spacing */
+    }
+
+    .tab {
+        margin-bottom: 1rem; /* Add spacing between tabs */
+    }
+
+    .weather-container {
+        margin-block: 2rem; /* Adjust margin for better spacing */
+    }
+
+    /* Adjustments for user info container */
+    .user-info-container {
+        display: block; /* Display user info for smaller screens */
+        margin-top: 2rem; /* Adjust margin for better spacing */
+    }
+
+    .name p:first-of-type {
+        font-size: 1.2rem; /* Decrease font size for country name */
+    }
+
+    .name img {
+        width: 20px; /* Decrease image size */
+        height: 20px;
+    }
+
+    .two-cards, .third-card {
+        flex-direction: column; /* Stack cards vertically for smaller screens */
+        margin: 1rem 0; /* Adjust margin for better spacing */
+    }
+    .weatherIcon {
+        width: 8rem; /* Decrease the size of the weather icon */
+        margin-top: 0.5rem; /* Adjust spacing for the icon */
+    }
+
+    .temp {
+        font-size: 4rem; /* Decrease the font size of the temperature */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #7a7adb; /* Your desired background color */
+        background-attachment: fixed; /* Fixed background to cover entire scroll */
+        background-size: 100% 100%; /* Cover the entire background */
+    }
+
+    /* Additional adjustments for smaller screens can be added here */
 }

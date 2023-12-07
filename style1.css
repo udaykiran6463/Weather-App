@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200&family=Merriweather+Sans&family=Slabo+27px&display=swap');
+
+*,
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+/* ---- */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+
+
+/*-----*/
+
+:root {
+    --colorDark1: #112D4E;
+    --colorDark2: #3F72AF;
+    --colorLight1: #DBE2EF;
+    --colorLight2: #F9F7F7;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    color: var(--colorLight2);
+    background-color: #7a7adb;
+    background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);
+}
+
+h1 {
+    text-align: center;
+    font-family: poppins;
+    box-sizing: border-box;
+    font-size: 4rem;
+    padding-top: 5px;
+    text-shadow: -1px 0 var(--colorDark1), 0 1px var(--colorDark1), 1px 0 var(--colorDark1), 0 -1px var(--colorDark1);
+}
+
+.tab-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 650px;
+    margin: 0 auto;
+    margin-top: 1.7rem;
+}
+
+.tab {
+    cursor: pointer;
+    font-size: 0.875rem;
+    letter-spacing: 1.75px;
+    padding: 6px 25px;
+}
+
+.weather-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-block: 2.5rem;
+}
+
+.btn1 {
+    all: unset;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--colorDark2);
+    cursor: pointer;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+}
+
+
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container img {
+    margin-bottom: 2rem;
+}
+
+.sub-container p:first-of-type {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.sub-container>p:nth-of-type(2) {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.75px;
+}
+
+
+.grant-location-container {
+    display: none;
+}
+
+.tab.current-tab {
+    background-color: rgba(0, 0, 0, 0.324);
+    border-radius: 4px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+
+.loading-container {
+    display: none;
+}
+
+.loading-container.active {
+    display: flex;
+}
+
+.loading-container {
+    text-transform: uppercase;
+
+}
+
+
+.form-container.active {
+    scale: 1;
+    opacity: 1;
+    display: flex;
+}
+
+.grant-location-container.active {
+    display: flex;
+}
+
+
+.user-sub-container {
+    display: flex;
+    max-width: 650px;
+    width: 90%;
+}
+
+.user-info-container {
+    display: none;
+}
+
+.user-info-container.active {
+    display: flex;
+
+}
+
+.left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weatherIcon {
+    width: 12rem;
+    align-self: start;
+    margin-top: 1rem;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px auto;
+}
+
+.name p:first-of-type {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    gap: 0 1rem;
+}
+
+.name img {
+    width: 30px;
+    height: 30px;
+}
+
+.two-cards,
+third-card {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1rem;
+}
+
+
+
+.parameter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parameter img {
+    width: 80px;
+    margin-right: 0.5rem;
+}
+
+.iconData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconData p:first-of-type {
+    font-size: 1.25rem;
+}
+
+.iconData p:last-of-type {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.temp {
+    font-size: 7rem;
+    font-family: 'Quicksand';
+}
+
+#desc {
+    font-size: 1.2rem;
+    margin: auto;
+}
+
+.sub-form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    gap: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-container {
+    display: none;
+}
+
+.form-container.active {
+    display: flex;
+}
+
+.form-container input {
+    all: unset;
+    width: calc(100% - 40px);
+    height: 40px;
+    padding: 0 20px;
+    flex-shrink: 4;
+    background-color: rgba(219, 226, 239, 0.5);
+    border-radius: 10px;
+
+}
+
+.form-container input::placeholder {
+    color: var(--colorDark1);
+}
+
+.form-container input:focus {
+    outline: 3px solid var(--colorDark2);
+}
+
+.form-container button {
+    all: unset;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--colorDark2);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Existing CSS code */
+
+/* Add media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .tab-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab {
+        margin-bottom: 10px;
+    }
+
+    .weather-container {
+        margin-block: 1.5rem;
+    }
+
+    .user-sub-container {
+        flex-direction: column;
+    }
+
+    .left-side {
+        margin-bottom: 1.5rem;
+    }
+
+    .right-side {
+        text-align: center;
+    }
+
+    .weatherIcon {
+        width: 8rem;
+    }
+
+    .temp {
+        font-size: 5rem;
+    }
+
+    .two-cards,
+    third-card {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Additional media queries for smaller screens if needed */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .tab {
+        padding: 6px 15px;
+    }
+
+    .btn1 {
+        font-size: 0.75rem;
+        padding: 8px 20px;
+    }
+
+    .sub-container img {
+        margin-bottom: 1rem;
+    }
+
+    .sub-container p:first-of-type {
+        font-size: 1.5rem;
+    }
+
+    .sub-container>p:nth-of-type(2) {
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .name p:first-of-type {
+        font-size: 1.25rem;
+    }
+
+    .iconData p:first-of-type {
+        font-size: 1rem;
+    }
+
+    .iconData p:last-of-type {
+        font-size: 0.875rem;
+    }
+
+    .form-container input {
+        height: 35px;
+        border-radius: 8px;
+    }
+
+    .form-container button {
+        width: 40px;
+        height: 35px;
+    }
+}
