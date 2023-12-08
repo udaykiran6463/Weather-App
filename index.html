@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style1.css">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/feviconWeather.png">
+    <title>WeatherVue</title>
 </head>
 <body>
     <div class="wrapper">
@@ -19,27 +20,32 @@
             <p class="tab" data-userweather>Your Weather</p>
             <p class="tab" data-searchweather>Search Weather</p>
         </div>
+
+
+        
         <div class="weather-container">
             <!-- grant location container-->
-
+            
             <div class="grant-location-container sub-container">
                 <img src="./assets/location.png" alt="location" class="" width="80" height="80" loading="lazy">
                 <p>Grant Location Access</p>
                 <p>Allow access to get weather information</p>
                 <button class="btn1" data-grantAccess>Grant Access</button>
             </div>
-
-
+            
+            
             <!-- Search weather container -->
             <form class="form-container sub-form-container" data-searchForm>
                 <input type="text" placeholder="Search for city..." data-searchInput>
                 <button class="btn"type="submit" ><img src="./assets/search.png" alt="" width="20" height="20" loading="lazy"></button>
             </form>
 
-            <!-- loading Screen container -->
+            <div class="error-container"><img src="./assets/not-found.png" alt="" errImg class="errorImage"></div>
 
+
+            <!-- loading Screen container -->            
             <div class=" sub-container loading-container">
-                <img src="./assets/loading.gif" alt="" width="150" height="150" ldImg>
+                <img src="./assets/loading.gif" alt="" width="150" height="150" ldImg class="loading-image">
                 <p>Loading</p>
             </div>
 

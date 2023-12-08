@@ -7,7 +7,9 @@ const searchForm = document.querySelector("[data-searchForm]");
 
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
+const errorContainer = document.querySelector(".error-container");
 
+const searchInput = document.querySelector("[data-searchInput]");
 
 
 
@@ -26,6 +28,9 @@ function switchTab(clickedTab){
         currentTab?.classList.remove("current-tab");
         clickedTab.classList.add("current-tab");
         currentTab = clickedTab;
+
+        searchInput.value = ""; // Clear the search input when switching tabs
+
 
         if(!searchForm.classList.contains("active")){
             userInfoContainer?.classList.remove("active");
@@ -87,7 +92,6 @@ async function fetchUserWeatherInfo(coordinates){
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data,coordinates)
-
         // console.log(data);
     }
     catch(err){
@@ -133,7 +137,7 @@ async function setTemp(coordinates) {
     
     const data = await response.json();
     
-    const tempValue = Math.round(data.current.temperature) + 3; // Calculate temperature
+    const tempValue = Math.round(data.current.temperature); // Calculate temperature
     
     const tempText = `${tempValue} °C`; // Prepare temperature text
     
@@ -154,7 +158,9 @@ function renderWeatherInfo(weatherInfo,coordinates){
     const windSpeed = document.querySelector("[data-windSpeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudyness = document.querySelector("[data-cloud]");
-
+    
+    errorContainer.classList.remove("active");
+    
     // --set city name
     cityName.innerText = weatherInfo?.city?.name;
 
@@ -189,8 +195,8 @@ function renderWeatherInfo(weatherInfo,coordinates){
     else{
         setBackgroundLight();
     }
-    const userInfoContainer = document.querySelector(".user-info-container");
-    userInfoContainer.style.marginTop = "3rem";
+    // const userInfoContainer = document.querySelector(".user-info-container");
+    // userInfoContainer.style.marginTop = "3rem";
     
     
 }
@@ -205,6 +211,9 @@ function renderWeatherInfoSearch(weatherInfo,coordinates){
     const windSpeed = document.querySelector("[data-windSpeed]");
     const humidity = document.querySelector("[data-humidity]");
     const cloudyness = document.querySelector("[data-cloud]");
+
+    
+    errorContainer.classList.remove("active");
 
     // --set city name
     cityName.innerText = weatherInfo?.name;
@@ -240,11 +249,11 @@ function renderWeatherInfoSearch(weatherInfo,coordinates){
         setBackgroundLight();
     }
 
-    const weatherContainer = document.querySelector(".weather-container");
-    weatherContainer.style.margin = "2rem auto";
+    // const weatherContainer = document.querySelector(".weather-container");
+    // weatherContainer.style.margin = "2rem auto";
 
-    const userInfoContainer = document.querySelector(".user-info-container");
-    userInfoContainer.style.marginTop = "0rem";
+    // const userInfoContainer = document.querySelector(".user-info-container");
+    // userInfoContainer.style.marginTop = "0rem";
 }
 
 
@@ -275,7 +284,6 @@ grantAccessButton.addEventListener("click",getLocation);
 
 // for search weather
 
-const searchInput = document.querySelector("[data-searchInput]");
 
 searchForm.addEventListener("submit",(e)=>{
     e.preventDefault();
@@ -307,9 +315,16 @@ async function fetchSearchWeatherInfo(city){
         // console.log("cords: ",cords);
         renderWeatherInfoSearch(data,cords);
     }
-    catch(err){
+// Assuming this code is within a try...catch block or error handling function
+    catch (err) {
         console.log(err);
+        userInfoContainer.classList.remove("active");
+
+        if (errorContainer) {
+            errorContainer.classList.add("active");
+        }
     }
+    
 }
 
 
