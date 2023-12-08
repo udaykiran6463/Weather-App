@@ -46,9 +46,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 3. Commit your changes (`git commit -am 'Add your feature'`).
 4. Push to the branch (`git push origin feature/YourFeature`).
 5. Open a pull request.
-
-## Credits
-
-This project is developed by [uday kiran Pillalamarri] and contributions from the open-source community.
-
-
